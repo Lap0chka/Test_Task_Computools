@@ -24,10 +24,10 @@ def calculate_average(results):
     total_generation_time = 0
 
     for r in results:
-        total_token_count += r['token_count']
-        total_time_to_first_token += r['time_to_first_token']
-        total_time_per_output_token += r['time_per_output_token']
-        total_generation_time += r['total_generation_time']
+        total_token_count += r.get('token_count', 0)
+        total_time_to_first_token += r.get('time_to_first_token', 0)
+        total_time_per_output_token += r.get('time_per_output_token', 0)
+        total_generation_time += r.get('total_generation_time', 0)
 
     avg_stats = {
         'avg_token_count': total_token_count / total_results,
