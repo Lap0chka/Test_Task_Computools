@@ -4,8 +4,9 @@ from django.http import HttpResponse, JsonResponse
 
 from .utils import load_benchmarking_results
 
+from typing import List, Dict, Union
 
-def calculate_average(results):
+def calculate_average(results: List[Dict[str, Union[int, float]]]) -> Dict[str, float]:
     """
     Calculate average statistics from a list of benchmarking results.
 
@@ -39,7 +40,7 @@ def calculate_average(results):
     return avg_stats
 
 
-def get_average_results(request):
+def get_average_results(request) -> Union[JsonResponse, HttpResponse]:
     """
     Retrieve average performance statistics from benchmarking results.
 
@@ -53,7 +54,8 @@ def get_average_results(request):
     return JsonResponse(avg_stats)
 
 
-def get_average_results_with_time(request, start_time, end_time):
+def get_average_results_with_time(request, start_time: str, end_time: str) \
+        -> Union[JsonResponse, HttpResponse]:
     """
     Retrieve average performance statistics for benchmarking
     results within a specified time range.
